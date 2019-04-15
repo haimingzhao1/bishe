@@ -1,0 +1,19 @@
+# Created by .ignore support plugin (hsz.mobi)
+*.class
+
+# About IntelliJ
+*.iml
+.idea/
+/out/
+target/
+
+# BlueJ files
+*.ctxt
+
+# Package Files
+*.jar
+*.war
+*.ear
+*.zip
+*.tar.gz
+*.rar
