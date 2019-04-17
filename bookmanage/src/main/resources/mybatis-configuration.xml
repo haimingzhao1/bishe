@@ -11,4 +11,7 @@
         <setting name="aggressiveLazyLoading" value="false"/>
     </settings>
     <!--typeAliases 给javabean取别名，这样mapper中resultType属性就不用写全类名了-->
+    <typeAliases>
+        <package name="com.bm.model"/>
+    </typeAliases>
 </configuration>
