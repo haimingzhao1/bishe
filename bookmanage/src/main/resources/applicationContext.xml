@@ -27,7 +27,7 @@
     <bean id="sqlSessionFactorybean" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="DataSource"/>
         <property name="configLocation" value="classpath:mybatis-configuration.xml"/>
-        <!--<property name="mapperLocations" value="classpath:mapper/*.xml"/>-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
     <!--扫描所有mapper接口，用来自动中注入-->
     <mybatis-spring:scan base-package="com.bm.dao"/>
