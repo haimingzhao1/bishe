@@ -1,6 +1,7 @@
 package com.bm.model;
 
 public class TAdmin {
+
     private Integer id;
 
     private String adminName;

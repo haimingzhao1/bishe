@@ -1,6 +1,7 @@
 package com.bm.model;
 
 public class BStock {
+
     private Integer id;
 
     private Integer stock;

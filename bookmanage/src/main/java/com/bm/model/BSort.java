@@ -1,6 +1,7 @@
 package com.bm.model;
 
 public class BSort {
+
     private Integer id;
 
     private String sortName;

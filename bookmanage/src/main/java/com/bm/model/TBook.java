@@ -1,6 +1,7 @@
 package com.bm.model;
 
 public class TBook {
+
     private Integer id;
 
     private String bookNumber;
@@ -18,6 +19,22 @@ public class TBook {
     private String bookRemark;
 
     private String ebook;
+
+    @Override
+    public String toString() {
+        return "TBook{" +
+                "id=" + id +
+                ", bookNumber='" + bookNumber + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", bookAuthor='" + bookAuthor + '\'' +
+                ", bookPress='" + bookPress + '\'' +
+                ", bookCreatetime='" + bookCreatetime + '\'' +
+                ", bookSummary='" + bookSummary + '\'' +
+                ", bookRemark='" + bookRemark + '\'' +
+                ", ebook='" + ebook + '\'' +
+                ", sortId=" + sortId +
+                '}';
+    }
 
     private Integer sortId;
 

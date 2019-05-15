@@ -7,9 +7,12 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 public interface AdminBookMapper {
+
     long countByExample(AdminBookExample example);
 
     int deleteByExample(AdminBookExample example);
+
+    int deleteByPrimaryKey(Integer id);
 
     int insert(AdminBook record);
 
@@ -17,7 +20,13 @@ public interface AdminBookMapper {
 
     List<AdminBook> selectByExample(AdminBookExample example);
 
+    AdminBook selectByPrimaryKey(Integer id);
+
     int updateByExampleSelective(@Param("record") AdminBook record, @Param("example") AdminBookExample example);
 
     int updateByExample(@Param("record") AdminBook record, @Param("example") AdminBookExample example);
+
+    int updateByPrimaryKeySelective(AdminBook record);
+
+    int updateByPrimaryKey(AdminBook record);
 }

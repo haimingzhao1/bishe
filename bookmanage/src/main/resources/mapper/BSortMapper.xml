@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bm.dao.BSortMapper">
   <resultMap id="BaseResultMap" type="com.bm.model.BSort">
-    <result column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="sort_name" jdbcType="VARCHAR" property="sortName" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -66,25 +66,18 @@
   <sql id="Base_Column_List">
     id, sort_name
   </sql>
-  <select id="selectByExample" parameterType="com.bm.model.BSortExample" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
     <include refid="Base_Column_List" />
     from b_sort
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
+    where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByExample" parameterType="com.bm.model.BSortExample">
+    <select id="findAllSorts" resultMap="BaseResultMap">
+      select * from b_sort
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from b_sort
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
+    where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="com.bm.model.BSort">
     insert into b_sort (id, sort_name)
@@ -109,32 +102,18 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.bm.model.BSortExample" resultType="java.lang.Long">
-    select count(*) from b_sort
-    <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByPrimaryKeySelective" parameterType="com.bm.model.BSort">
     update b_sort
     <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.sortName != null">
-        sort_name = #{record.sortName,jdbcType=VARCHAR},
+      <if test="sortName != null">
+        sort_name = #{sortName,jdbcType=VARCHAR},
       </if>
     </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByPrimaryKey" parameterType="com.bm.model.BSort">
     update b_sort
-    set id = #{record.id,jdbcType=INTEGER},
-      sort_name = #{record.sortName,jdbcType=VARCHAR}
-    <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
+    set sort_name = #{sortName,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

@@ -1,12 +1,13 @@
 package com.bm.model;
 
 public class AdminBook {
+
     private Integer id;
-
+    //添加日期
     private String addTime;
-
+    //图书id
     private Integer bookId;
-
+    //添加数量
     private Integer addNumber;
 
     public Integer getId() {

@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>《 ${detail.name}》</title>
+    <title>《 ${detail.bookName}》</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -16,34 +16,39 @@
 <nav class="navbar navbar-default" role="navigation" style="background-color:#fff">
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
-            <a class="navbar-brand " href="reader_main.html"><p class="text-primary">我的图书馆</p></a>
+            <a class="navbar-brand " href="reader_main"><p class="text-primary">我的图书馆</p></a>
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
                 <li class="active">
-                    <a href="reader_querybook.html" >
+                    <a href="reader_querybook" >
                         图书查询
                     </a>
                 </li>
+                <li >
+                    <a href="reader_booklist" >
+                        全部图书
+                    </a>
+                </li>
                 <li>
-                    <a href="reader_info.html" >
+                    <a href="reader_info" >
                         个人信息
                     </a>
                 </li>
                 <li >
-                    <a href="mylend.html" >
+                    <a href="mylend" >
                         我的借还
                     </a>
                 </li>
                 <li >
-                    <a href="reader_repasswd.html" >
+                    <a href="reader_repasswd" >
                         密码修改
                     </a>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="reader_info.html"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.name}，已登录</a></li>
-                <li><a href="login.html"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                <li><a href="reader_info"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.stuName}，已登录</a></li>
+                <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
             </ul>
         </div>
     </div>
@@ -52,57 +57,45 @@
 <div class="col-xs-6 col-md-offset-3" style="position: relative;top: 3%">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">《 ${detail.name}》</h3>
+            <h3 class="panel-title">《 ${detail.bookName}》</h3>
         </div>
         <div class="panel-body">
             <table class="table table-hover">
                 <tr>
                     <th width="15%">书名</th>
-                    <td>${detail.name}</td>
+                    <td>${detail.bookName}</td>
                 </tr>
                 <tr>
                     <th>作者</th>
-                    <td>${detail.author}</td>
+                    <td>${detail.bookAuthor}</td>
                 </tr>
                 <tr>
                     <th>出版社</th>
-                    <td>${detail.publish}</td>
+                    <td>${detail.bookPress}</td>
                 </tr>
                 <tr>
-                    <th>ISBN</th>
-                    <td>${detail.isbn}</td>
+                    <th>图书编号</th>
+                    <td>${detail.bookNumber}</td>
                 </tr>
                 <tr>
                     <th>简介</th>
-                    <td>${detail.introduction}</td>
-                </tr>
-                <tr>
-                    <th>语言</th>
-                    <td>${detail.language}</td>
-                </tr>
-                <tr>
-                    <th>价格</th>
-                    <td>${detail.price}</td>
+                    <td>${detail.bookRemark}</td>
                 </tr>
                 <tr>
                     <th>出版日期</th>
-                    <td>${detail.pubdate}</td>
+                    <td>${detail.bookCreatetime}</td>
                 </tr>
                 <tr>
-                    <th>分类号</th>
-                    <td>${detail.classId}</td>
-                </tr>
-                <tr>
-                    <th>书架号</th>
-                    <td>${detail.pressmark}</td>
+                    <th>分类</th>
+                    <td>${detail.sort.sortName}</td>
                 </tr>
                 <tr>
                     <th>状态</th>
-                    <c:if test="${detail.state==1}">
+                    <c:if test="${detail_stock.stock>0}">
                         <td>在馆</td>
                     </c:if>
-                    <c:if test="${detail.state==0}">
-                        <td>借出</td>
+                    <c:if test="${detail_stock.stock<=0}">
+                        <td>库存不足</td>
                     </c:if>
 
                 </tr>

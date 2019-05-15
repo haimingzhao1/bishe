@@ -1,9 +1,10 @@
 package com.bm.model;
 
 public class TDiscipline {
+
     private Integer id;
 
-    private Integer disciplineName;
+    private String disciplineName;
 
     private Integer disciplineId;
 
@@ -15,11 +16,11 @@ public class TDiscipline {
         this.id = id;
     }
 
-    public Integer getDisciplineName() {
+    public String getDisciplineName() {
         return disciplineName;
     }
 
-    public void setDisciplineName(Integer disciplineName) {
+    public void setDisciplineName(String disciplineName) {
         this.disciplineName = disciplineName;
     }
 

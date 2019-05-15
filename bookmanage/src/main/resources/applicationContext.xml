@@ -31,4 +31,7 @@
     </bean>
     <!--扫描所有mapper接口，用来自动中注入-->
     <mybatis-spring:scan base-package="com.bm.dao"/>
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/views/templates"/>
+    </bean>
 </beans>

@@ -2,13 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.bm.dao.TBorrowMapper">
   <resultMap id="BaseResultMap" type="com.bm.model.TBorrow">
-    <result column="id" jdbcType="INTEGER" property="id" />
+    <id column="id" jdbcType="INTEGER" property="id" />
     <result column="user_id" jdbcType="INTEGER" property="userId" />
     <result column="book_id" jdbcType="INTEGER" property="bookId" />
     <result column="borrow_date" jdbcType="VARCHAR" property="borrowDate" />
     <result column="also_date" jdbcType="VARCHAR" property="alsoDate" />
     <result column="is_also" jdbcType="INTEGER" property="isAlso" />
     <result column="is_continue" jdbcType="INTEGER" property="isContinue" />
+  </resultMap>
+  <resultMap id="BaseResultMap1" type="com.bm.model.TBorrowDomain">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="borrow_date" jdbcType="VARCHAR" property="borrowDate" />
+    <result column="also_date" jdbcType="VARCHAR" property="alsoDate" />
+    <result column="is_also" jdbcType="INTEGER" property="isAlso" />
+    <result column="is_continue" jdbcType="INTEGER" property="isContinue" />
+    <association property="user" select="com.bm.dao.TUserMapper.selectByPrimaryKey" column="user_id"/>
+    <association property="book" select="com.bm.dao.TBookMapper.selectByPrimaryKey" column="book_id"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -85,6 +94,16 @@
       order by ${orderByClause}
     </if>
   </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from t_borrow
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from t_borrow
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <delete id="deleteByExample" parameterType="com.bm.model.TBorrowExample">
     delete from t_borrow
     <if test="_parameter != null">
@@ -154,6 +173,12 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+    <select id="findBorrowByUserId" resultMap="BaseResultMap1">
+      select * from t_borrow where user_id = #{userid}
+    </select>
+  <select id="findAllBorrws" resultMap="BaseResultMap1">
+    select * from t_borrow
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_borrow
     <set>
@@ -195,5 +220,39 @@
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.bm.model.TBorrow">
+    update t_borrow
+    <set>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="bookId != null">
+        book_id = #{bookId,jdbcType=INTEGER},
+      </if>
+      <if test="borrowDate != null">
+        borrow_date = #{borrowDate,jdbcType=VARCHAR},
+      </if>
+      <if test="alsoDate != null">
+        also_date = #{alsoDate,jdbcType=VARCHAR},
+      </if>
+      <if test="isAlso != null">
+        is_also = #{isAlso,jdbcType=INTEGER},
+      </if>
+      <if test="isContinue != null">
+        is_continue = #{isContinue,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.bm.model.TBorrow">
+    update t_borrow
+    set user_id = #{userId,jdbcType=INTEGER},
+      book_id = #{bookId,jdbcType=INTEGER},
+      borrow_date = #{borrowDate,jdbcType=VARCHAR},
+      also_date = #{alsoDate,jdbcType=VARCHAR},
+      is_also = #{isAlso,jdbcType=INTEGER},
+      is_continue = #{isContinue,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
