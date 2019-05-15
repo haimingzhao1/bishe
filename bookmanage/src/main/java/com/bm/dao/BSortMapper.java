@@ -1,6 +1,7 @@
 package com.bm.dao;
 
 import com.bm.model.BSort;
+import com.bm.model.TBook;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -20,4 +21,5 @@ public interface BSortMapper {
     int updateByPrimaryKey(BSort record);
 
     List<BSort> findAllSorts();
+
 }

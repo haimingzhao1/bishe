@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="reader_booklist" >
+                    <a href="reader_booksort" >
                         全部图书
                     </a>
                 </li>
@@ -92,12 +92,14 @@
                 <tr>
                     <th>状态</th>
                     <c:if test="${detail_stock.stock>0}">
-                        <td>在馆</td>
+                        <td>在馆,&nbsp;剩余&nbsp;${detail_stock.stock}&nbsp;本</td>
                     </c:if>
-                    <c:if test="${detail_stock.stock<=0}">
+                    <c:if test="${detail_stock.stock==0}">
                         <td>库存不足</td>
                     </c:if>
-
+                    <c:if test="${detail_stock.stock==-1}">
+                        <td><a href="#">查看电子书</a> / <a href="#">下载电子书</a></td>
+                    </c:if>
                 </tr>
                 </tbody>
             </table>

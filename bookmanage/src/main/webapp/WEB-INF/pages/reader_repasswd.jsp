@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
     <title>${readercard.stuName}的主页</title>
@@ -25,7 +26,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="reader_booklist" >
+                    <a href="reader_booksort" >
                         全部图书
                     </a>
                 </li>

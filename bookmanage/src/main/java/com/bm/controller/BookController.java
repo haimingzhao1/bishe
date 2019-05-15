@@ -1,9 +1,10 @@
 package com.bm.controller;
 
+import com.bm.model.BSort;
 import com.bm.model.BStock;
 import com.bm.model.BookDomain;
+import com.bm.model.TBook;
 import com.bm.service.BookService;
-import com.bm.service.DisciplineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -52,7 +53,7 @@ public class BookController {
     public ModelAndView toReaderBookDetail(@RequestParam("bookId") Integer bookid) {
         BookDomain book = bookService.findBookById(bookid);
         BStock stock = bookService.findStockBybookId(bookid);
-        System.out.println(book);
+//        System.out.println(book);
         ModelAndView modelAndView = new ModelAndView("reader_book_detail");
         modelAndView.addObject("detail",book);
         modelAndView.addObject("detail_stock",stock);
@@ -60,12 +61,24 @@ public class BookController {
     }
 
     /**
-     * 管理员查看所有图书
+     * 学生查看所有图书
      * @return
      */
     @RequestMapping(value = "reader_booksort")
     public ModelAndView getBooks(){
-        List books = new ArrayList();
-        return new ModelAndView("reader_book_sort");
+        List sorts = bookService.findSort();
+        ModelAndView modelAndView = new ModelAndView("reader_book_sort");
+        modelAndView.addObject("sorts",sorts);
+        return modelAndView;
+    }
+
+    @RequestMapping("reader_book_bysort")
+    public ModelAndView getBooksBySort(@RequestParam("sortId") Integer sortId) {
+        List<TBook> bookList = bookService.findBookListBySortId(sortId);
+        BSort sortid = bookService.findSortBySortId(sortId);
+        ModelAndView modelAndView = new ModelAndView("reader_book_list");
+        modelAndView.addObject("bookList", bookList);
+        modelAndView.addObject("sortid", sortid);
+        return modelAndView;
     }
 }

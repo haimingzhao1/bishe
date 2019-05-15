@@ -34,4 +34,6 @@ public interface TBookMapper {
     List<BookDomain> queryBook(@Param(value = "booknum") String booknum, @Param(value = "bookname") String bookname);
 
     BookDomain findBookById(Integer bookid);
+
+    List<TBook> findBookListBySortId(Integer sortId);
 }

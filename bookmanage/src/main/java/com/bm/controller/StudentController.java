@@ -1,6 +1,5 @@
 package com.bm.controller;
 
-import com.bm.model.TBook;
 import com.bm.model.TDiscipline;
 import com.bm.model.TStudent;
 import com.bm.model.TUser;
@@ -11,21 +10,13 @@ import com.bm.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Controller
-public class StrudentController {
+public class StudentController {
     @Autowired
     UserService userService;
     @Autowired
@@ -77,7 +68,7 @@ public class StrudentController {
                     redirectAttributes.addFlashAttribute("succ", "密码修改成功！");
                     return "redirect:/login";
                 } else {
-                    redirectAttributes.addFlashAttribute("succ", "密码修改失败！");
+                    redirectAttributes.addFlashAttribute("error", "密码修改失败！");
                     return "redirect:/reader_repasswd";
                 }
 

@@ -26,7 +26,7 @@
                     </a>
                 </li>
                 <li >
-                    <a href="reader_booklist" >
+                    <a href="reader_booksort" >
                         全部图书
                     </a>
                 </li>

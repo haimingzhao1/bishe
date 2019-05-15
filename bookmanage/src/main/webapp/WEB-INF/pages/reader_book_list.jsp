@@ -57,19 +57,34 @@
 
 <div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%">
     <div class="panel-heading">
-        <h3 class="panel-title" style="width:200px;">
-            图书分类
+        <h3 class="panel-title">
+            ${sortid.sortName}
         </h3>
     </div>
-    <div class="panel-body" style="width:200px;">
-        <table class="table table-hover" width="190">
+    <div class="panel-body">
+        <table class="table table-hover">
             <thead>
-            <c:forEach items="${sorts}" var="alog">
             <tr>
-                <th><a href="reader_book_bysort?sortId=${alog.id}"><c:out value="${alog.sortName}"></c:out></a></th>
+                <th>图书编号</th>
+                <th>图书名</th>
+                <th>作者</th>
+                <th>出版社</th>
+                <th>出版日期</th>
+                <th>查看详情</th>
             </tr>
-            </c:forEach>
             </thead>
+            <tbody>
+            <c:forEach items="${bookList}" var="alog">
+                <tr>
+                    <td><c:out value="${alog.bookNumber}"></c:out></td>
+                    <td><c:out value="${alog.bookName}"></c:out></td>
+                    <td><c:out value="${alog.bookAuthor}"></c:out></td>
+                    <td><c:out value="${alog.bookPress}"></c:out></td>
+                    <td><c:out value="${alog.bookCreatetime}"></c:out></td>
+                    <td><a href="readerbookdetail?bookId=${alog.id}">点击查看</a></td>
+                </tr>
+            </c:forEach>
+            </tbody>
         </table>
     </div>
 </div>

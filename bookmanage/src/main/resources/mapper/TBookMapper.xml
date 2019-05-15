@@ -212,6 +212,9 @@
   <select id="findBookById" resultMap="BaseResultMap">
     select * from t_book where id = #{bookid}
   </select>
+  <select id="findBookListBySortId" resultMap="BaseResultMap1">
+    select * from t_book where sort_id = #{sortId}
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_book
     <set>

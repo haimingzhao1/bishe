@@ -7,11 +7,10 @@ import com.bm.model.BSort;
 import com.bm.model.BStock;
 import com.bm.model.BookDomain;
 import com.bm.model.TBook;
+import com.bm.untils.DataUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,11 +31,21 @@ public class BookService {
                 books = bookMapper.queryBook(null, "%" + searchWord + "%");
             }
         }
+        for (BookDomain bookDomain : books) {
+            if (bookDomain.getBookCreatetime() != null) {
+                String newCreatetime = DataUtil.stampToDateNoSecond(bookDomain.getBookCreatetime());
+                bookDomain.setBookCreatetime(newCreatetime);
+            }
+
+        }
         return books;
     }
 
     public BookDomain findBookById(Integer bookid) {
-        return bookMapper.findBookById(bookid);
+            BookDomain bookDomain = bookMapper.findBookById(bookid);
+            String newCreatetime = DataUtil.stampToDateNoSecond(bookDomain.getBookCreatetime());
+            bookDomain.setBookCreatetime(newCreatetime);
+        return bookDomain;
     }
 
     /**
@@ -61,5 +70,13 @@ public class BookService {
      */
     public List<BSort> findSort() {
         return bSortMapper.findAllSorts();
+    }
+
+    public List<TBook> findBookListBySortId(Integer sortId) {
+        return bookMapper.findBookListBySortId(sortId);
+    }
+
+    public BSort findSortBySortId(Integer sortId) {
+        return bSortMapper.selectByPrimaryKey(sortId);
     }
 }

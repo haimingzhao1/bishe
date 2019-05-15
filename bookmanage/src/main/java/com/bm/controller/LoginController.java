@@ -30,6 +30,7 @@ public class LoginController {
     }
     @RequestMapping(value = "/loginCheck",method = RequestMethod.POST)
     public @ResponseBody Object loginCheck(HttpServletRequest request){
+
         String username =request.getParameter("username");
         String passwd = request.getParameter("passwd");
         TUser user = longinService.LoginCheck(username, passwd);

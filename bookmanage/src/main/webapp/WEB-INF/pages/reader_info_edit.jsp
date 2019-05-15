@@ -19,17 +19,17 @@
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li class="active">
+                <li>
                     <a href="reader_querybook" >
                         图书查询
                     </a>
                 </li>
                 <li >
-                    <a href="reader_booklist" >
+                    <a href="reader_booksort" >
                         全部图书
                     </a>
                 </li>
-                <li>
+                <li class="active">
                     <a href="reader_info" >
                         个人信息
                     </a>
