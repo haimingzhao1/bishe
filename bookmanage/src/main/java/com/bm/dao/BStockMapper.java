@@ -20,4 +20,6 @@ public interface BStockMapper {
     int updateByPrimaryKey(BStock record);
 
     BStock selectByBookId(Integer bookid);
+
+    BStock findStockByBookId(Integer bookid);
 }

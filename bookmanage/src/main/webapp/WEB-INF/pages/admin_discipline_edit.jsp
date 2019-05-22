@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>编辑读者信息《 ${readerInfo.stuName}》</title>
+    <title>编辑专业信息《 ${tDiscipline.disciplineName}》</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -91,55 +91,22 @@
 <div class="col-xs-6 col-md-offset-3" style="position: relative;top: 10%">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">编辑读者信息《 ${readerInfo.stuName}》</h3>
+            <h3 class="panel-title">编辑专业《 ${tDiscipline.disciplineName}》</h3>
         </div>
         <div class="panel-body">
-            <form action="reader_edit_do/${readerInfo.id}" method="post" id="readeredit" >
+            <form action="disicipline_edit_do/${tDiscipline.id}" method="post" id="disiciplineit" >
                 <input type="hidden" name="_method" value="put">
                 <div class="input-group">
-                    <span  class="input-group-addon">学生学号</span>
-                    <input readonly="readonly" type="text" class="form-control" name="stuNum" id="stuNum" value="${readerInfo.stuNumber}">
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">姓名</span>
-                    <input type="text" class="form-control" name="name" id="name" value="${readerInfo.stuName}" >
-                </div>
-                <div class="input-group">
-                    <span  class="input-group-addon">性别</span>
-                    <select name="sex" id="sex">
-                        <option value="${readerInfo.gender}">${readerInfo.gender==1?'男':'女'}</option>
-                        <option value = 0>女</option>
-                        <option value = 1>男</option>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <span class="input-group-addon">电话</span>
-                    <input type="text" class="form-control" name="phone" id="phone"  value="${readerInfo.stuPhone}" >
-                </div>
-                <div class="input-group">
-                    <span  class="input-group-addon">所属系</span>
-                    <select name="discipline" id="discipline">
-                        <option value="${readerInfo.discipline.id}">${readerInfo.discipline.disciplineName}</option>
-                        <c:forEach items="${disciplines}" var="discipline">
-                            <option value = "${discipline.id}">${discipline.disciplineName}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-                <div class="input-group">
-                    <span  class="input-group-addon">是否VIP</span>
-                    <select name="vip" id="vip">
-                        <option value="${readerInfo.isVip}">${readerInfo.isVip==1?'是':'否'}</option>
-                        <option value = 0>否</option>
-                        <option value = 1>是</option>
-                    </select>
+                    <span class="input-group-addon">专业</span>
+                    <input type="text" class="form-control" name="name" id="name"  value="${tDiscipline.disciplineName}" >
                 </div>
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
                 <script>
                     function mySubmit(flag){
                         return flag;
                     }
-                    $("#readeredit").submit(function () {
-                        if($("#name").val()==''||$("#phone").val()==''){
+                    $("#disiciplineit").submit(function () {
+                        if($("#name").val()==''){
                             alert("请填入完整读者信息！");
                             return mySubmit(false);
                         }

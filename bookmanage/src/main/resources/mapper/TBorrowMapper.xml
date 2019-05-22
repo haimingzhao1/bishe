@@ -179,6 +179,9 @@
   <select id="findAllBorrws" resultMap="BaseResultMap1">
     select * from t_borrow
   </select>
+  <select id="findBorrowsByBookId" resultMap="BaseResultMap1">
+    select * from t_borrow where book_id = #{bookid}
+  </select>
   <update id="updateByExampleSelective" parameterType="map">
     update t_borrow
     <set>

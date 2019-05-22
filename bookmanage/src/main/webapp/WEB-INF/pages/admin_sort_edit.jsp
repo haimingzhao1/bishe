@@ -2,7 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>编辑专业信息《 ${readerInfo.stuName}》</title>
+    <title>编辑分类信息《 ${bSort.sortName}》</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -91,23 +91,23 @@
 <div class="col-xs-6 col-md-offset-3" style="position: relative;top: 10%">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">编辑专业《 ${tDiscipline.disciplineName}》</h3>
+            <h3 class="panel-title">编辑分类《 ${bSort.sortName}》</h3>
         </div>
         <div class="panel-body">
-            <form action="disicipline_edit_do/${tDiscipline.id}" method="post" id="disiciplineit" >
+            <form action="sort_edit_do/${bSort.id}" method="post" id="sortit" >
                 <input type="hidden" name="_method" value="put">
                 <div class="input-group">
-                    <span class="input-group-addon">专业</span>
-                    <input type="text" class="form-control" name="name" id="name"  value="${tDiscipline.disciplineName}" >
+                    <span class="input-group-addon">分类</span>
+                    <input type="text" class="form-control" name="name" id="name"  value="${bSort.sortName}" >
                 </div>
                 <input type="submit" value="确定" class="btn btn-success btn-sm" class="text-left">
                 <script>
                     function mySubmit(flag){
                         return flag;
                     }
-                    $("#disiciplineit").submit(function () {
+                    $("#sortit").submit(function () {
                         if($("#name").val()==''){
-                            alert("请填入完整读者信息！");
+                            alert("请填入完整分类信息！");
                             return mySubmit(false);
                         }
                     })

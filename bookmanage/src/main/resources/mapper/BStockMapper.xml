@@ -118,6 +118,9 @@
     <select id="selectByBookId" resultType="com.bm.model.BStock">
       select * from b_stock where book_id = #{bookid}
     </select>
+  <select id="findStockByBookId" resultType="com.bm.model.BStock">
+    select * from b_stock where book_id = #{bookid}
+  </select>
   <update id="updateByPrimaryKeySelective" parameterType="com.bm.model.BStock">
     update b_stock
     <set>
@@ -140,4 +143,5 @@
       admin_id = #{adminId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

@@ -133,7 +133,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${bookStocks}" var="book">
+            <c:forEach items="${querybookStocks}" var="book">
             <tr>
                 <td><c:out value="${book.bookNumber}"></c:out></td>
                 <td><c:out value="${book.bookName}"></c:out></td>

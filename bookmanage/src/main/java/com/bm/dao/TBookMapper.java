@@ -1,6 +1,7 @@
 package com.bm.dao;
 
 import com.bm.model.BookDomain;
+import com.bm.model.BookStock;
 import com.bm.model.TBook;
 import com.bm.model.TBookExample;
 import org.apache.ibatis.annotations.Param;
@@ -36,4 +37,12 @@ public interface TBookMapper {
     BookDomain findBookById(Integer bookid);
 
     List<TBook> findBookListBySortId(Integer sortId);
+
+    List<BookStock> findAllBookStock();
+
+    BookStock findBookStockById(Integer id);
+
+    TBook findBookByBookNum(String bookNum);
+
+    List<BookStock> findBooksByBookName(String newbookname);
 }

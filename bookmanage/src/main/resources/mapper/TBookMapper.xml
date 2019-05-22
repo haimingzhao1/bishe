@@ -11,7 +11,20 @@
     <result column="book_summary" jdbcType="VARCHAR" property="bookSummary" />
     <result column="book_remark" jdbcType="VARCHAR" property="bookRemark" />
     <result column="ebook" jdbcType="VARCHAR" property="ebook" />
-    <association property="sort" select="com.bm.dao.BSortMapper.selectByPrimaryKey" column="sort_id"></association>
+    <association property="sort" select="com.bm.dao.BSortMapper.selectByPrimaryKey" column="sort_id"/>
+  </resultMap>
+  <resultMap id="BookStockMap" type="com.bm.model.BookStock">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="book_number" jdbcType="VARCHAR" property="bookNumber" />
+    <result column="book_name" jdbcType="VARCHAR" property="bookName" />
+    <result column="book_author" jdbcType="VARCHAR" property="bookAuthor" />
+    <result column="book_press" jdbcType="VARCHAR" property="bookPress" />
+    <result column="book_createtime" jdbcType="VARCHAR" property="bookCreatetime" />
+    <result column="book_summary" jdbcType="VARCHAR" property="bookSummary" />
+    <result column="book_remark" jdbcType="VARCHAR" property="bookRemark" />
+    <result column="ebook" jdbcType="VARCHAR" property="ebook" />
+    <result column="sort_id" jdbcType="INTEGER" property="sortId"/>
+    <association property="stock" select="com.bm.dao.BStockMapper.selectByBookId" column="id"/>
   </resultMap>
     <resultMap id="BaseResultMap1" type="com.bm.model.TBook">
       <id column="id" jdbcType="INTEGER" property="id" />
@@ -143,13 +156,13 @@
         book_author,
       </if>
       <if test="bookPress != null">
-        "book_ press",
+        book_press,
       </if>
       <if test="bookCreatetime != null">
         book_createtime,
       </if>
       <if test="bookSummary != null">
-        "book_ summary",
+        book_summary,
       </if>
       <if test="bookRemark != null">
         book_remark,
@@ -215,7 +228,19 @@
   <select id="findBookListBySortId" resultMap="BaseResultMap1">
     select * from t_book where sort_id = #{sortId}
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <select id="findAllBookStock" resultMap="BookStockMap">
+    select * from t_book
+  </select>
+    <select id="findBookStockById" resultMap="BookStockMap">
+      select * from t_book where id = #{id}
+    </select>
+    <select id="findBookByBookNum" resultType="com.bm.model.TBook">
+      select * from t_book where book_number = #{bookNum}
+    </select>
+    <select id="findBooksByBookName" resultMap="BookStockMap">
+      select * from t_book where book_name like #{newbookname}
+    </select>
+    <update id="updateByExampleSelective" parameterType="map">
     update t_book
     <set>
       <if test="record.id != null">
@@ -231,13 +256,13 @@
         book_author = #{record.bookAuthor,jdbcType=VARCHAR},
       </if>
       <if test="record.bookPress != null">
-        "book_ press" = #{record.bookPress,jdbcType=VARCHAR},
+        book_ press = #{record.bookPress,jdbcType=VARCHAR},
       </if>
       <if test="record.bookCreatetime != null">
         book_createtime = #{record.bookCreatetime,jdbcType=VARCHAR},
       </if>
       <if test="record.bookSummary != null">
-        "book_ summary" = #{record.bookSummary,jdbcType=VARCHAR},
+        book_ summary = #{record.bookSummary,jdbcType=VARCHAR},
       </if>
       <if test="record.bookRemark != null">
         book_remark = #{record.bookRemark,jdbcType=VARCHAR},
@@ -282,13 +307,13 @@
         book_author = #{bookAuthor,jdbcType=VARCHAR},
       </if>
       <if test="bookPress != null">
-        "book_ press" = #{bookPress,jdbcType=VARCHAR},
+        book_press = #{bookPress,jdbcType=VARCHAR},
       </if>
       <if test="bookCreatetime != null">
         book_createtime = #{bookCreatetime,jdbcType=VARCHAR},
       </if>
       <if test="bookSummary != null">
-        "book_ summary" = #{bookSummary,jdbcType=VARCHAR},
+        book_summary = #{bookSummary,jdbcType=VARCHAR},
       </if>
       <if test="bookRemark != null">
         book_remark = #{bookRemark,jdbcType=VARCHAR},

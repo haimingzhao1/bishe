@@ -79,7 +79,11 @@
                 </tr>
                 <tr>
                     <th>简介</th>
-                    <td>${detail.bookRemark}</td>
+                    <td>${detail.bookSummary==''?'暂无简介哦~~':detail.bookSummary}</td>
+                </tr>
+                <tr>
+                    <th>备注</th>
+                    <td>${detail.bookRemark==''?'暂无备注哦~~':detail.bookRemark}</td>
                 </tr>
                 <tr>
                     <th>出版日期</th>
@@ -98,15 +102,75 @@
                         <td>库存不足</td>
                     </c:if>
                     <c:if test="${detail_stock.stock==-1}">
-                        <td><a href="#">查看电子书</a> / <a href="#">下载电子书</a></td>
+                        <td><a id="readBook" href="#">预览电子书</a> / <a class="loadbook" href="loadbook">下载电子书</a>
+                        <form action="" method="post">
+                            <input type="hidden" name="userid" value="${readercard.id}">
+                            <input type="hidden" name="filename" value="${detail.ebook}">
+                        </form> </td>
                     </c:if>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
+    <div class="panel-body">
+        <span id="bookContent"></span>
+        <br/><br/><br/>
+        <span id="bookAlert"></span>
+    </div>
 
 </div>
+<script type="text/javascript">
 
+    $(function(){
+
+        $(".loadbook").click(function(){
+
+            var href = $(this).attr("href");
+
+            $("form").attr("action", href).submit();
+
+            return false;
+
+        });
+
+    })
+
+    $(function(){
+
+        $("#readBook").click(function(){
+            // alert("chakan");
+
+            // var href = $(this).attr("href");
+
+            // $("form").attr("action", href).submit();
+
+            $.ajax({
+                url:"/readBook",
+                data:{
+                    bookId:${detail.id}
+                },
+                dataType:"json",
+                success:function (data) {
+                    // alert("21");
+                    if(data.status == "0"){
+                        alert("本书id有误");
+                    }else if(data.status == "1"){
+                        alert("本书暂不支持预览。。。");
+                    }else if(data.status == "2"){
+                        var bookContent = data.bookContent;
+
+                        // alert(bookContent);
+                        $("#bookContent").text(bookContent);
+                        $("#bookAlert").text("欲知后事如何，请下载！");
+                    }
+                }
+            });
+
+        });
+
+    })
+
+</script>
 </body>
 </html>

@@ -54,7 +54,26 @@
         </div>
     </div>
 </nav>
-
+<div style="position: relative;top: 10%">
+    <c:if test="${!empty succ}">
+        <div class="alert alert-success alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+                ${succ}
+        </div>
+    </c:if>
+    <c:if test="${!empty error}">
+        <div class="alert alert-danger alert-dismissable">
+            <button type="button" class="close" data-dismiss="alert"
+                    aria-hidden="true">
+                &times;
+            </button>
+                ${error}
+        </div>
+    </c:if>
+</div>
 <div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%">
     <div class="panel-heading">
         <h3 class="panel-title" style="width:200px;">
@@ -73,6 +92,5 @@
         </table>
     </div>
 </div>
-
 </body>
 </html>

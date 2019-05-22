@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>全部读者</title>
+    <title>全部专业</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -115,34 +115,24 @@
 <div class="panel panel-default" style="position:relative;top: 80px;width: 90%;margin-left: 5%">
     <div class="panel-heading">
         <h3 class="panel-title">
-            全部读者
+            全部专业
         </h3>
     </div>
     <div class="panel-body">
         <table class="table table-hover" >
             <thead>
             <tr>
-                <th>学生学号</th>
-                <th>姓名</th>
-                <th>性别</th>
-                <th>电话</th>
-                <th>所属系</th>
-                <th>是否VIP</th>
+                <th>专业名称</th>
                 <th>编辑</th>
                 <th>删除</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${readers}" var="reader">
+            <c:forEach items="${tdisciplines}" var="disci">
                 <tr>
-                    <td><c:out value="${reader.stuNumber}"></c:out></td>
-                    <td><c:out value="${reader.stuName}"></c:out></td>
-                    <td><c:out value="${reader.gender == 1 ?'男':'女'}"></c:out></td>
-                    <td><c:out value="${reader.stuPhone}"></c:out></td>
-                    <td><c:out value="${reader.discipline.disciplineName}"></c:out></td>
-                    <td><c:out value="${reader.isVip == 1?'是':'否'}"></c:out></td>
-                    <td><a href="reader_edit?readerId=<c:out value="${reader.id}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
-                    <td><a href="reader_delete?readerId=<c:out value="${reader.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                    <td><c:out value="${disci.disciplineName}"></c:out></td>
+                    <td><a href="discipline_edit?disicId=<c:out value="${disci.id}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
+                    <td><a href="discipline_delete?disicid=<c:out value="${disci.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
                 </tr>
             </c:forEach>
             </tbody>

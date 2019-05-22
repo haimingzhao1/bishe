@@ -100,4 +100,20 @@ public class BookDomain {
         public void setSort(BSort sort) {
             this.sort = sort;
         }
+
+    @Override
+    public String toString() {
+        return "BookDomain{" +
+                "id=" + id +
+                ", bookNumber='" + bookNumber + '\'' +
+                ", bookName='" + bookName + '\'' +
+                ", bookAuthor='" + bookAuthor + '\'' +
+                ", bookPress='" + bookPress + '\'' +
+                ", bookCreatetime='" + bookCreatetime + '\'' +
+                ", bookSummary='" + bookSummary + '\'' +
+                ", bookRemark='" + bookRemark + '\'' +
+                ", ebook='" + ebook + '\'' +
+                ", sort=" + sort +
+                '}';
+    }
 }

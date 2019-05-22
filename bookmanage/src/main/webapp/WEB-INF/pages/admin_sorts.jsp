@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>全部专业</title>
+    <title>全部图书分类</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -14,9 +14,6 @@
 
 </head>
 <body>
-<c:if test="${!empty info}">
-    <script>alert("${info}");window.location.href="allreaders"</script>
-</c:if>
 <nav  style="position:fixed;z-index: 999;width: 100%;background-color: #fff" class="navbar navbar-default" role="navigation" >
     <div class="container-fluid">
         <div class="navbar-header" style="margin-left: 8%;margin-right: 1%">
@@ -115,24 +112,24 @@
 <div class="panel panel-default" style="position:relative;top: 80px;width: 90%;margin-left: 5%">
     <div class="panel-heading">
         <h3 class="panel-title">
-            全部读者
+            全部分类
         </h3>
     </div>
     <div class="panel-body">
         <table class="table table-hover" >
             <thead>
             <tr>
-                <th>专业名称</th>
+                <th>分类名称</th>
                 <th>编辑</th>
                 <th>删除</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${tdisciplines}" var="disci">
+            <c:forEach items="${sorts}" var="sort">
                 <tr>
-                    <td><c:out value="${disci.disciplineName}"></c:out></td>
-                    <td><a href="discipline_edit?disicId=<c:out value="${disci.id}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
-                    <td><a href="discipline_delete?disicid=<c:out value="${disci.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                    <td><c:out value="${sort.sortName}"></c:out></td>
+                    <td><a href="sort_edit?sortId=<c:out value="${sort.id}"></c:out>"><button type="button" class="btn btn-info btn-xs">编辑</button></a></td>
+                    <td><a href="sort_delete?sortId=<c:out value="${sort.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
                 </tr>
             </c:forEach>
             </tbody>

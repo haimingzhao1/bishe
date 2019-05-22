@@ -229,10 +229,9 @@
             }
         )
         // 记住登录信息
-        function rememberLogin(username, password, checked) {
+        function rememberLogin(username, checked) {
             Cookies.set('loginStatus', {
                 username: username,
-                password: password,
                 remember: checked
             }, {expires: 30, path: ''})
         }
@@ -273,7 +272,7 @@
                     type: "POST",
                     url: "/loginCheck",
                     data: {
-                        username:username ,
+                        username:username,
                         passwd: passwd
                     },
                     dataType: "json",
@@ -285,7 +284,7 @@
                             window.location.href="/admin_main";
                         } else if(data.stateCode.trim() == "2"){
                             if(remember){
-                                rememberLogin(id,passwd,remember);
+                                rememberLogin(username,passwd,remember);
                             }else {
                                 Cookies.remove('loginStatus');
                             }

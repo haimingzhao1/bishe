@@ -66,8 +66,6 @@
         </div>
     </div>
 </nav>
-
-
 <div style="padding: 70px 550px 10px">
     <form   method="post" action="queryborrow" class="form-inline"  id="searchform">
         <div class="input-group">
@@ -130,7 +128,7 @@
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${borrowlist}" var="alog">
+            <c:forEach items="${queryBorrowDomains}" var="alog">
                 <tr>
                     <td><c:out value="${alog.book.bookNumber}"></c:out></td>
                     <td><c:out value="${alog.user.username}"></c:out></td>

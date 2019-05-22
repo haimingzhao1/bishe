@@ -58,6 +58,28 @@
                         密码修改
                     </a>
                 </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        分类管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="allsorts">全部分类</a></li>
+                        <li class="divider"></li>
+                        <li><a href="sort_add">增加分类</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        专业管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="alldisciplines">全部专业</a></li>
+                        <li class="divider"></li>
+                        <li><a href="discipline_add">增加专业</a></li>
+                    </ul>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;${admin.adminName}，已登录</a></li>
@@ -69,7 +91,7 @@
 
 
 <div style="padding: 70px 550px 10px">
-    <form   method="post" action="querybook" class="form-inline"  id="searchform">
+    <form   method="post" action="queryborrow" class="form-inline"  id="searchform">
         <div class="input-group">
             <input type="text" placeholder="输入图书编号" class="form-control" id="search" name="searchWord" class="form-control">
             <span class="input-group-btn">
@@ -123,7 +145,9 @@
                 <th>图书编号</th>
                 <th>学生学号</th>
                 <th>借出日期</th>
+                <th>是否逾期</th>
                 <th>归还日期</th>
+                <th>是否续期</th>
                 <th>删除</th>
             </tr>
             </thead>
@@ -133,8 +157,13 @@
                     <td><c:out value="${alog.book.bookNumber}"></c:out></td>
                     <td><c:out value="${alog.user.username}"></c:out></td>
                     <td><c:out value="${alog.borrowDate}"></c:out></td>
-                    <td><c:out value="${alog.alsoDate}"></c:out></td>
-                    <td><a href="deletebook?bookId=<c:out value="${alog.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+                    <td><a href="lendisalso?id=${alog.id}"><c:out value="${alog.isAlso==1?'是':'否'}"></c:out></a></td>
+                    <td><c:out value="${alog.alsoDate}"></c:out>
+                        <c:if test="${alog.alsoDate==null}">
+                        <a href="lendtoreturn?id=<c:out value="${alog.id}"></c:out>">归还</a></c:if>
+                    </td>
+                    <td><a href="lendisalsContinue?id=${alog.id}"><c:out value="${alog.isContinue==1?'是':'否'}"></c:out></a></td>
+                    <td><a href="deleteborrow?bookId=<c:out value="${alog.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
                 </tr>
             </c:forEach>
             </tbody>

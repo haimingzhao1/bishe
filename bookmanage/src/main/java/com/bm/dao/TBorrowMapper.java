@@ -34,4 +34,6 @@ public interface TBorrowMapper {
     List<TBorrowDomain> findBorrowByUserId(Integer userid);
 
     List<TBorrowDomain> findAllBorrws();
+
+    List<TBorrowDomain> findBorrowsByBookId(Integer bookid);
 }

@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>添加专业</title>
+    <title>添加分类</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -91,12 +91,12 @@
 <div class="col-xs-6 col-md-offset-3" style="position: relative;top: 25%">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h3 class="panel-title">添加读者</h3>
+            <h3 class="panel-title">添加分类</h3>
         </div>
         <div class="panel-body">
-            <form action="discipline_add_do" method="post" id="disciplineit" >
+            <form action="sort_add_do" method="post" id="sortit" >
                 <div class="input-group">
-                    <span class="input-group-addon">专业</span>
+                    <span class="input-group-addon">分类</span>
                     <input type="text" class="form-control" name="name" id="name"  >
                 </div>
                 <input type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
@@ -104,9 +104,9 @@
                     function mySubmit(flag){
                         return flag;
                     }
-                    $("#disciplineit").submit(function () {
+                    $("#sortit").submit(function () {
                         if($("#name").val()==''){
-                            alert("请填入完整读者信息！");
+                            alert("请填入完整分类信息！");
                             return mySubmit(false);
                         }
                     })

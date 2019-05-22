@@ -100,8 +100,8 @@ public class BorrowContrller {
     /**
      * 借还日志删除——管理员部分
      */
-    @RequestMapping("deletebook")
-    public String deletebook(@RequestParam("bookId") Integer id, RedirectAttributes redirectAttributes) {
+    @RequestMapping("deleteborrow")
+    public String deletebook(@RequestParam("id") Integer id, RedirectAttributes redirectAttributes) {
         int res = borrowService.deleteBorrowById(id);
         if (res>0){
             redirectAttributes.addFlashAttribute("succ", "删除信息成功！");
