@@ -24,7 +24,27 @@ public class BookStock {
 
         private BStock stock;
 
-        public Integer getId() {
+        private String addTime;
+
+        private Integer borrowCount;
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
+    }
+
+    public Integer getBorrowCount() {
+        return borrowCount;
+    }
+
+    public void setBorrowCount(Integer count) {
+        this.borrowCount = count;
+    }
+
+    public Integer getId() {
             return id;
         }
 

@@ -46,7 +46,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        借还管理
+                        还书管理
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">
@@ -57,6 +57,28 @@
                     <a href="admin_repasswd" >
                         密码修改
                     </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        分类管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="allsorts">全部分类</a></li>
+                        <li class="divider"></li>
+                        <li><a href="sort_add">增加分类</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        专业管理
+                        <b class="caret"></b>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="alldisciplines">全部专业</a></li>
+                        <li class="divider"></li>
+                        <li><a href="discipline_add">增加专业</a></li>
+                    </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">

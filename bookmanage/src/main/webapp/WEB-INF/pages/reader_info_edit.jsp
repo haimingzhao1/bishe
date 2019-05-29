@@ -44,6 +44,11 @@
                         密码修改
                     </a>
                 </li>
+                <li >
+                    <a href="reader_book_hot" >
+                        热门top10
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.stuName}，已登录</a></li>

@@ -67,6 +67,11 @@ public class AdminController {
             return "redirect:/admin_repasswd";
         }
     }
+
+    /**
+     * 管理员查看全部读者
+     * @return
+     */
     @RequestMapping("allreaders")
     public ModelAndView allBooks(){
         ArrayList<TStudentDomain> readers=studentService.findAllStus();
@@ -166,7 +171,7 @@ public class AdminController {
     }
 
     /**
-     * 借还管理中归还
+     * 还书管理中归还
      * @param id
      * @return
      */
@@ -298,6 +303,7 @@ public class AdminController {
         book.setBookRemark(remark);
         book.setId(bookId);
         book.setSortId(sort);
+        book.setAddTime(DataUtil.timeStamp());
         BookDomain bookDomain = bookService.findBookById(bookId);
         if (sort!=1&&bookDomain.getSort().getId()==1){
             redirectAttributes.addFlashAttribute("error", "修改失败！电子书种类不可修改！");

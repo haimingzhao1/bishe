@@ -46,6 +46,11 @@
                         密码修改
                     </a>
                 </li>
+                <li >
+                    <a href="reader_book_hot" >
+                        热门top10
+                    </a>
+                </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="reader_info"><span class="glyphicon glyphicon-user"></span>&nbsp;${readercard.stuName}，已登录</a></li>
@@ -74,7 +79,8 @@
         </div>
     </c:if>
 </div>
-<div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%">
+<div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%;
+background:url('img/timg.jpg'); ">
     <div class="panel-heading">
         <h3 class="panel-title" style="width:200px;">
             图书分类

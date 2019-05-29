@@ -1,5 +1,6 @@
 package com.bm.controller;
 
+import com.bm.model.TBook;
 import com.bm.model.TDiscipline;
 import com.bm.model.TStudent;
 import com.bm.model.TUser;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class StudentController {
@@ -119,5 +121,18 @@ public class StudentController {
 
         }
         return "redirect:/reader_info";
+    }
+
+    /**
+     * 進入热门图书页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/reader_book_hot")
+    public ModelAndView toBookHot() {
+        ModelAndView view = new ModelAndView("reader_book_hot");
+        List<TBook> hotbooklist = studentService.getHotBooks();
+        view.addObject("hotbookList", hotbooklist);
+        return view;
     }
 }

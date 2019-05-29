@@ -55,7 +55,7 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        借还管理
+                        还书管理
                         <b class="caret"></b>
                     </a>
                     <ul class="dropdown-menu">

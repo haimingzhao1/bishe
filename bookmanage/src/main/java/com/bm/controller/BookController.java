@@ -2,11 +2,9 @@ package com.bm.controller;
 
 import com.bm.model.*;
 import com.bm.service.BookService;
-import com.bm.service.BorrowService;
 import com.bm.service.StudentService;
 import com.bm.untils.DataUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -18,13 +16,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLEncoder;
-import java.nio.file.FileAlreadyExistsException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-@RestController
+@Controller
 public class BookController {
     @Autowired
     BookService bookService;
@@ -36,8 +33,9 @@ public class BookController {
      * @return
      */
     @RequestMapping("/reader_querybook")
-    public String readerQueryBook() {
-        return "reader_book_query";
+    public ModelAndView readerQueryBook() {
+        ModelAndView modelAndView = new ModelAndView("reader_book_query");
+        return modelAndView;
     }
 
     @RequestMapping(value = "reader_querybook_do", method = RequestMethod.POST)
@@ -136,6 +134,8 @@ public class BookController {
         book.setBookAuthor(bookauther);
         book.setBookNumber(bookNum);
         book.setBookName(bookname);
+        book.setAddTime(DataUtil.timeStamp());
+        book.setBorrowCount(0);
         int res = bookService.addBook(book, stock, file);
         if (res > 0) {
             redirectAttributes.addFlashAttribute("succ", "添加图书成功！");
@@ -188,6 +188,7 @@ public class BookController {
      * 学生查看图书
      */
     @RequestMapping("/readBook")
+    @ResponseBody
     public Object readBook(@RequestParam("bookId") String bookId){
         Map<String,String> res = new HashMap<>();
         if(!StringUtils.isEmpty(bookId)){

@@ -19,7 +19,7 @@ public class SortController {
     @Autowired
     SortService sortService;
     /**
-     * 查詢所有係
+     * 查詢所有分类
      */
     @RequestMapping(value = "allsorts",method = RequestMethod.GET)
     public ModelAndView findSorts(){
@@ -29,7 +29,7 @@ public class SortController {
         return modelAndView;
     }
     /**
-     * 添加係
+     * 添加分类
      */
 
     @RequestMapping(value = "sort_add")
@@ -49,7 +49,7 @@ public class SortController {
         }
     }
     /**
-     * 修改係
+     * 修改分类
      */
     @RequestMapping(value = "sort_edit")
     public ModelAndView updateSortById(@RequestParam("sortId") Integer disicid){
@@ -71,7 +71,7 @@ public class SortController {
         }
     }
     /**
-     * 刪除係
+     * 刪除分类
      */
     @RequestMapping(value = "sort_delete")
     public String deleteDisciplineById(@RequestParam(value = "sortId") Integer sortId, RedirectAttributes redirectAttributes){

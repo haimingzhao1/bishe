@@ -75,6 +75,9 @@ public class BorrowService {
     @Transactional
     public int insertBorrow(Integer bookid, String username) {
         Integer userid = userMapper.findUserByStuNum(username).getId();
+        TBook book = bookMapper.selectByPrimaryKey(bookid);
+        book.setBorrowCount(book.getBorrowCount()+1);
+        bookMapper.updateByPrimaryKeySelective(book);
         TBorrow borrow = new TBorrow();
         borrow.setIsContinue(0);
         borrow.setIsAlso(0);

@@ -20,20 +20,24 @@ public class TBook {
 
     private String ebook;
 
-    @Override
-    public String toString() {
-        return "TBook{" +
-                "id=" + id +
-                ", bookNumber='" + bookNumber + '\'' +
-                ", bookName='" + bookName + '\'' +
-                ", bookAuthor='" + bookAuthor + '\'' +
-                ", bookPress='" + bookPress + '\'' +
-                ", bookCreatetime='" + bookCreatetime + '\'' +
-                ", bookSummary='" + bookSummary + '\'' +
-                ", bookRemark='" + bookRemark + '\'' +
-                ", ebook='" + ebook + '\'' +
-                ", sortId=" + sortId +
-                '}';
+    private String addTime;
+
+    private Integer borrowCount;
+
+    public String getAddTime() {
+        return addTime;
+    }
+
+    public void setAddTime(String addTime) {
+        this.addTime = addTime;
+    }
+
+    public Integer getBorrowCount() {
+        return borrowCount;
+    }
+
+    public void setBorrowCount(Integer count) {
+        this.borrowCount = count;
     }
 
     private Integer sortId;

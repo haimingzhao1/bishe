@@ -205,11 +205,16 @@
             <label for="passwd">密码</label>
             <input type="password" class="form-control" id="passwd" placeholder="请输入密码">
         </div>
+        <div class="login-content-input login-content-input-code">
+               <div>
+                           验证码<input type="code"  name="captha"           id="captha" value="" />
+                <img  id="validateCodeImg" src="getCode"    onclick="login.reloadValidateCode();" />
+                </div>
+        </div>
         <div class="checkbox text-left">
             <label>
                 <input type="checkbox" id="remember">记住账号
             </label>
-            <a style="margin-left: 100px" href="#">没有账号？点击注册</a>
         </div>
 
         <p style="text-align: right;color: red;position: absolute" id="info"></p><br/>
@@ -218,6 +223,19 @@
     </div>
 </div>
     <script>
+        /**
+         * 点击验证码刷新
+         */
+        var login = login || {};
+
+        login.reloadValidateCode = function(){
+            /**
+             * 给url后面加一个随机数，这样，每次请求都会从后台取新生成的验证码
+             * 不会再去缓存中取验证码
+             */
+            var randomNumber = new Date()+Math.floor(Math.random() * Math.pow(10, 8));
+            $("#validateCodeImg").attr("src","getCode?random="+randomNumber);
+        }
         $("#username").keyup(
             function () {
                 if(isNaN($("#username").val())){
@@ -253,10 +271,13 @@
         $("#loginButton").click(function () {
             var username =$("#username").val();
             var passwd=$("#passwd").val();
+            var captha=$("#captha").val();
             var remember=$("#remember").prop('checked');
 
             if( username=='' && passwd==''){
                 $("#info").text("提示:账号和密码不能为空");
+            }else if ( captha ==''){
+                $("#info").text("提示:验证码为空");
             }
             else if ( username ==''){
                 $("#info").text("提示:账号不能为空");
@@ -273,13 +294,16 @@
                     url: "/loginCheck",
                     data: {
                         username:username,
-                        passwd: passwd
+                        passwd: passwd,
+                        captha: captha
                     },
                     dataType: "json",
                     success: function(data) {
                         if(data.stateCode.trim() == "0") {
                             $("#info").text("提示:账号或密码错误！");
-                        } else if(data.stateCode.trim() == "1") {
+                        } else if(data.stateCode.trim() == "3") {
+                            $("#info").text("提示:验证码错误！");
+                        }else if(data.stateCode.trim() == "1") {
                             $("#info").text("提示:登陆成功，跳转中...");
                             window.location.href="/admin_main";
                         } else if(data.stateCode.trim() == "2"){

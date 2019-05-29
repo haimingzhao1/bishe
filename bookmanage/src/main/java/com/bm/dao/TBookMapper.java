@@ -45,4 +45,6 @@ public interface TBookMapper {
     TBook findBookByBookNum(String bookNum);
 
     List<BookStock> findBooksByBookName(String newbookname);
+
+    List<TBook> getHotBooks();
 }
