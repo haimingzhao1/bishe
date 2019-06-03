@@ -58,8 +58,11 @@
         </div>
     </div>
 </nav>
-
+<div style="width: 100px;margin-left: 100px">
+    <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
+</div>
 <div class="col-xs-6 col-md-offset-3" style="position: relative;top: 3%">
+
     <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title">《 ${detail.bookName}》</h3>

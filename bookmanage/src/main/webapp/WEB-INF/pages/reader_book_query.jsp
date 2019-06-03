@@ -83,6 +83,9 @@
         })
     </script>
 </div>
+<div style="width: 100px;margin-left: 100px">
+    <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
+</div>
 <div style="position: relative;top: 10%">
     <c:if test="${!empty succ}">
         <div class="alert alert-success alert-dismissable">
@@ -102,6 +105,7 @@
                 ${error}
         </div>
     </c:if>
+
 </div>
 <c:if test="${!empty books}">
     <div class="panel panel-default">

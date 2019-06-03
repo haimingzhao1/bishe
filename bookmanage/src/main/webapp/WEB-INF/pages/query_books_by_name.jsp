@@ -130,6 +130,9 @@
         ${error}
     </div>
 </c:if>
+    <div style="width: 100px;margin-left: 100px">
+        <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
+    </div>
 </div>
 <div class="panel panel-default" style="width: 90%;margin-left: 5%">
     <div class="panel-heading" style="background-color: #fff">

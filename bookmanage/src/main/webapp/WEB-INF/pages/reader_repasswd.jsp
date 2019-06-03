@@ -76,7 +76,9 @@
             ${error}
     </div>
 </c:if>
-
+<div style="width: 100px;margin-left: 100px">
+    <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
+</div>
 
 <div style="width: 60%;margin-left: 20%;margin-top: 10%">
     <form class="form-horizontal" method="post" action="reader_repasswd_do"  id="repasswd" >

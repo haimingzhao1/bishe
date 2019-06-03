@@ -61,6 +61,9 @@
 </nav>
 
 <div class="panel panel-default" style="width: 90%;margin-left: 5%;margin-top: 5%">
+    <div style="width: 100px;margin-left: 100px">
+        <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
+    </div>
     <div class="panel-heading">
         <h3 class="panel-title">
             ${sortid.sortName}

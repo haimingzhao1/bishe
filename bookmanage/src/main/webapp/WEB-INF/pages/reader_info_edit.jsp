@@ -58,6 +58,9 @@
     </div>
 </nav>
 <div class="col-xs-5 col-md-offset-3">
+    <div style="width: 100px;margin-left: 100px">
+        <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">

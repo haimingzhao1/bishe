@@ -1,13 +1,7 @@
 package com.bm.controller;
 
-import com.bm.model.TBook;
-import com.bm.model.TDiscipline;
-import com.bm.model.TStudent;
-import com.bm.model.TUser;
-import com.bm.service.DisciplineService;
-import com.bm.service.LonginService;
-import com.bm.service.StudentService;
-import com.bm.service.UserService;
+import com.bm.model.*;
+import com.bm.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -27,7 +21,8 @@ public class StudentController {
     LonginService longinService;
     @Autowired
     DisciplineService disciplineService;
-
+    @Autowired
+    LeaveMsgService leaveMsgService;
     @RequestMapping(value = "/reader_main")
     public String toUserMain() {
         return "reader_main";
@@ -134,5 +129,37 @@ public class StudentController {
         List<TBook> hotbooklist = studentService.getHotBooks();
         view.addObject("hotbookList", hotbooklist);
         return view;
+    }
+    /**
+     * 進入留言页面
+     *
+     * @return
+     */
+    @RequestMapping(value = "/leavemsg")
+    public String toLeaveMsg() {
+        return "leave_msg";
+    }
+
+    /**
+     * 留言功能
+     *
+     * @return
+     */
+    @RequestMapping(value = "/leave_msg_do")
+    public String LeaveMsg(@RequestParam("id") Integer id,@RequestParam("total") String total,@RequestParam("content") String content,
+                           RedirectAttributes redirectAttributes) {
+        TLeaveMsgId leaveMsg = new TLeaveMsgId();
+        leaveMsg.setTotal(total);
+        leaveMsg.setContent(content);
+        leaveMsg.setStudentId(id);
+        int res = leaveMsgService.addLeaveMsg(leaveMsg);
+        if (res > 0) {
+            redirectAttributes.addFlashAttribute("succ", "留言成功！");
+            return "redirect:/leavemsg";
+        } else {
+            redirectAttributes.addFlashAttribute("error", "留言失败！");
+            return "redirect:/leavemsg";
+
+        }
     }
 }

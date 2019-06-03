@@ -20,17 +20,17 @@
         </div>
         <div class="collapse navbar-collapse" id="example-navbar-collapse">
             <ul class="nav navbar-nav navbar-left">
-                <li >
+                <li>
                     <a href="reader_querybook" >
                         图书查询
                     </a>
                 </li>
-                <li >
+                <li>
                     <a href="reader_booksort" >
                         全部图书
                     </a>
                 </li>
-                <li class="active">
+                <li>
                     <a href="reader_info" >
                         个人信息
                     </a>
@@ -58,64 +58,57 @@
         </div>
     </div>
 </nav>
-<c:if test="${!empty succ}">
-    <div class="alert alert-success alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
-            &times;
-        </button>
-            ${succ}
-    </div>
-</c:if>
-<c:if test="${!empty error}">
-    <div class="alert alert-danger alert-dismissable">
-        <button type="button" class="close" data-dismiss="alert"
-                aria-hidden="true">
-            &times;
-        </button>
-            ${error}
-    </div>
-</c:if>
-<div style="width: 100px;margin-left: 100px">
-    <a href="leavemsg"><button type="button" class="btn btn-primary btn-block" >留言</button></a>
-</div>
 <div class="col-xs-5 col-md-offset-3">
+    <div style="position: relative;top: 10%">
+        <c:if test="${!empty succ}">
+            <div class="alert alert-success alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                    ${succ}
+            </div>
+        </c:if>
+        <c:if test="${!empty error}">
+            <div class="alert alert-danger alert-dismissable">
+                <button type="button" class="close" data-dismiss="alert"
+                        aria-hidden="true">
+                    &times;
+                </button>
+                    ${error}
+            </div>
+        </c:if>
+    </div>
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">
-                我的信息
+                添加留言
             </h3>
         </div>
         <div class="panel-body">
-            <table class="table table-hover">
-                <tr>
-                    <th width="20%">学号</th>
-                    <td>${readercard.stuNumber}</td>
-                </tr>
-                <tr>
-                    <th>姓名</th>
-                    <td>${readercard.stuName}</td>
-                </tr>
-                <tr>
-                    <th>性别</th>
-                    <td>${readercard.gender == 1 ? '男' :'女'}</td>
-                </tr>
-                <tr>
-                    <th>电话</th>
-                    <td>${readercard.stuPhone}</td>
-                </tr>
-                <tr>
-                    <th>所在系</th>
-                    <td>${discipline.disciplineName}</td>
-                </tr>
-                <tr>
-                    <th>是否VIP</th>
-                    <td>${readercard.isVip==0?'否':'是'}</td>
-                </tr>
-                </tbody>
-            </table>
+                <form action="leave_msg_do?id=${readercard.id}" method="post" id="addmsg" enctype="multipart/form-data">
+                    <div class="form-group">
+                        <label for="total">标题</label>
+                        <input type="text" class="form-control" name="total" id="total" placeholder="请输入标题">
+                    </div>
+                    <div class="form-group">
+                        <label for="content">内容</label>
+                        <input type="text" class="form-control" name="content" id="content"  placeholder="输入内容尽量不要超过50字">
+                    </div>
+                    <input type="submit" value="添加" class="btn btn-success btn-sm" class="text-left">
+                    <script>
+                        function mySubmit(flag){
+                            return flag;
+                        }
+                        $("#addbook").submit(function () {
+                            if($("#total").val()==''||$("#content").val()==''){
+                                alert("请填入完整信息！");
+                                return mySubmit(false);
+                            }
+                        })
+                    </script>
+                </form>
         </div>
-        <a class="btn btn-success btn-sm" href="reader_info_edit" role="button">修改</a>
     </div>
 </div>
 
