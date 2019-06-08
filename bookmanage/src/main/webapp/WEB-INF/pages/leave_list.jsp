@@ -2,7 +2,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>借还日志</title>
+    <title>留言信息</title>
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <script src="js/jquery-3.2.1.js"></script>
     <script src="js/bootstrap.min.js" ></script>
@@ -11,7 +11,6 @@
             background-color: rgb(240,242,245);
         }
     </style>
-
 </head>
 <body>
 
@@ -89,86 +88,59 @@
         </div>
     </div>
 </nav>
-<div style="padding: 70px 550px 10px">
-    <form   method="post" action="queryborrow" class="form-inline"  id="searchform">
-        <div class="input-group">
-            <input type="text" placeholder="输入图书编号" class="form-control" id="search" name="searchWord" class="form-control">
-            <span class="input-group-btn">
-                            <input type="submit" value="搜索" class="btn btn-default">
-            </span>
-        </div>
-    </form>
-    <script>
-        function mySubmit(flag){
-            return flag;
-        }
-        $("#searchform").submit(function () {
-            var val=$("#search").val();
-            if(val==''){
-                alert("请输入关键字");
-                return mySubmit(false);
-            }
-        })
-    </script>
+<div style="position: relative;top: 15%">
+<c:if test="${!empty succ}">
+    <div class="alert alert-success alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-hidden="true">
+            &times;
+        </button>
+        ${succ}
+    </div>
+</c:if>
+<c:if test="${!empty error}">
+    <div class="alert alert-danger alert-dismissable">
+        <button type="button" class="close" data-dismiss="alert"
+                aria-hidden="true">
+            &times;
+        </button>
+        ${error}
+    </div>
+</c:if>
 </div>
-<div style="position: relative;top: 10%">
-    <c:if test="${!empty succ}">
-        <div class="alert alert-success alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
-                ${succ}
-        </div>
-    </c:if>
-    <c:if test="${!empty error}">
-        <div class="alert alert-danger alert-dismissable">
-            <button type="button" class="close" data-dismiss="alert"
-                    aria-hidden="true">
-                &times;
-            </button>
-                ${error}
-        </div>
-    </c:if>
-</div>
-<div class="panel panel-default" style="width: 90%;margin-left: 5%">
-    <div class="panel-heading">
+<div class="panel panel-default" style="position:relative;top: 80px;width: 90%;margin-left: 5%">
+    <div class="panel-heading" style="background-color: #fff">
         <h3 class="panel-title">
-            借还日志
+            最近50条留言
         </h3>
     </div>
     <div class="panel-body">
         <table class="table table-hover">
             <thead>
             <tr>
-                <th>图书编号</th>
-                <th>学生学号</th>
-                <th>借出日期</th>
-                <th>是否逾期</th>
-                <th>归还日期</th>
-                <th>是否续期</th>
-                <th>删除</th>
+                <th>用户</th>
+                <th>标题</th>
+                <th>留言内容</th>
+                <th>留言详情</th>
+                <th>删除留言</th>
             </tr>
             </thead>
             <tbody>
-            <c:forEach items="${queryBorrowDomains}" var="alog">
-                <tr>
-                    <td><c:out value="${alog.book.bookNumber}"></c:out></td>
-                    <td><c:out value="${alog.user.username}"></c:out></td>
-                    <td><c:out value="${alog.borrowDate}"></c:out></td>
-                    <td><a href="lendisalso?id=${alog.id}"><c:out value="${alog.isAlso==1?'是':'否'}"></c:out></a></td>
-                    <td><c:out value="${alog.alsoDate}"></c:out>
-                        <c:if test="${alog.alsoDate==null}">
-                        <a href="lendtoreturn?id=<c:out value="${alog.id}"></c:out>">归还</a></c:if>
-                    </td>
-                    <td><a href="lendisalsContinue?id=${alog.id}"><c:out value="${alog.isContinue==1?'是':'否'}"></c:out></a></td>
-                    <td><a href="deletebook?bookId=<c:out value="${alog.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
-                </tr>
+            <c:forEach items="${leaveMsgs}" var="alog">
+            <tr>
+                <td><c:out value="${alog.student.stuName}"></c:out></td>
+                <td><c:out value="${alog.total}"></c:out></td>
+                <td><c:out value="${alog.content}"></c:out></td>
+                <td><a href="leavedetail?Id=<c:out value="${alog.id}"></c:out>"><button type="button" class="btn btn-success btn-xs">详情</button></a></td>
+                <td><a href="deleteleave?Id=<c:out value="${alog.id}"></c:out>"><button type="button" class="btn btn-danger btn-xs">删除</button></a></td>
+            </tr>
             </c:forEach>
             </tbody>
         </table>
     </div>
 </div>
-
+<%--<script type="text/javascript">--%>
+<%--    var lend = ${boo}--%>
+<%--</script>--%>
 </body>
 </html>

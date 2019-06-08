@@ -13,11 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.UnsupportedEncodingException;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -34,6 +30,8 @@ public class AdminController {
     BookService bookService;
     @Autowired
     BorrowService borrowService;
+    @Autowired
+    LeaveMsgService leaveMsgService;
     @RequestMapping(value = "/admin_main")
     public String toAdminMain(){
         return "admin_main";
@@ -350,5 +348,46 @@ public class AdminController {
         ModelAndView modelAndView=new ModelAndView("query_books_by_name");
         modelAndView.addObject("querybookStocks",querybookStocks);
         return modelAndView;
+    }
+
+    /**
+     * 管理员查看留言
+     * @return
+     */
+    @RequestMapping("leavelist")
+    public ModelAndView toLeaveList(){
+        List<TLeaveMsg> leaveMsgs=leaveMsgService.findallMsgs();
+        ModelAndView modelAndView=new ModelAndView("leave_list");
+        modelAndView.addObject("leaveMsgs",leaveMsgs);
+        return modelAndView;
+    }
+
+    /**
+     * 管理员查看留言详情
+     * @return
+     */
+    @RequestMapping("leavedetail")
+    public ModelAndView LeaveDetail(@RequestParam("Id") Integer id){
+        TLeaveMsg leaveMsg=leaveMsgService.findMsgById(id);
+        ModelAndView modelAndView=new ModelAndView("leave_detail");
+        modelAndView.addObject("leaveMsg",leaveMsg);
+        return modelAndView;
+    }
+
+    /**
+     * 管理员查看留言详情
+     * @return
+     */
+    @RequestMapping("deleteleave")
+    public String deleteLeave(@RequestParam("Id") Integer id,RedirectAttributes redirectAttributes){
+        int res = leaveMsgService.deleteLeaveMsgByid(id);
+        if (res>0){
+            redirectAttributes.addFlashAttribute("succ", "删除 成功！");
+            return "redirect:/leavelist";
+        }
+        else {
+            redirectAttributes.addFlashAttribute("error", "删除 失败！");
+            return "redirect:/leavelist";
+        }
     }
 }

@@ -82,8 +82,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;${admin.adminName}，已登录</a></li>
-                <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                <li><a href="leavelist">留言</a></li>
+                <li><a href="#">${admin.adminName}，已登录</a></li>
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
     </div>
@@ -137,6 +138,12 @@
         <h3 class="panel-title">
             借还日志
         </h3>
+        <div style="margin-left: 1120px">
+            <a href="export_lendlist" class="easyui-linkbutton" iconCls="icon-print" plain="true" data-cmd="print">导出</a>
+            <form id="export" action="" method="post">
+
+            </form>
+        </div>
     </div>
     <div class="panel-body">
         <table class="table table-hover">
@@ -170,6 +177,21 @@
         </table>
     </div>
 </div>
+<script type="text/javascript">
 
+    $(function(){
+
+        $(".export_lendlist").click(function(){
+
+            var href = $(this).attr("href");
+
+            $("#export").attr("action", href).submit();
+
+            return false;
+
+        });
+
+    })
+</script>
 </body>
 </html>

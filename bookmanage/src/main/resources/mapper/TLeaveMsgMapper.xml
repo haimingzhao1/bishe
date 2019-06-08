@@ -38,4 +38,14 @@
       </if>
     </trim>
   </insert>
+  <delete id="deleteLeaveMsgByid" parameterType="java.lang.Integer">
+    delete from t_leavemsg
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <select id="findallMsgs" resultMap="BaseResultMap">
+      select * from t_leavemsg order by id desc limit 50
+    </select>
+    <select id="findMsgById" resultMap="BaseResultMap">
+      select * from t_leavemsg where id = #{id};
+    </select>
 </mapper>

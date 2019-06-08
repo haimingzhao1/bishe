@@ -81,8 +81,9 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;${admin.adminName}，已登录</a></li>
-                <li><a href="logout"><span class="glyphicon glyphicon-log-in"></span>&nbsp;退出</a></li>
+                <li><a href="leavelist">留言</a></li>
+                <li><a href="#">${admin.adminName}，已登录</a></li>
+                <li><a href="logout">退出</a></li>
             </ul>
         </div>
     </div>
