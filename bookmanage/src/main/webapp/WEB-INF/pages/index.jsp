@@ -48,12 +48,6 @@
 <h2 style="text-align: center;font-family: 'Adobe 楷体 Std R';color: palevioletred">图 书 馆</h2>
 <div style="float:right;" id="github_iframe"></div>
 <script>
-    /**
-     * Copyright (c) 2016 hustcc
-     * License: MIT
-     * Version: %%GULP_INJECT_VERSION%%
-     * GitHub: https://github.com/hustcc/canvas-nest.js
-     **/
     ! function() {
         //封装方法，压缩之后减少文件大小
         function get_attribute(node, attr, default_value) {
@@ -175,13 +169,13 @@
     </ol>
     <div class="carousel-inner">
         <div class="item active">
-            <img src="img/82839-106.jpg" alt="第一张">
+            <img style="height:460px;width:100%;" src="img/012345.jpg" alt="第一张">
         </div>
         <div class="item">
-            <img src="img/105905-106.jpg" alt="第二张">
+            <img style="height:460px;width:100%;" src="img/105905-106.jpg" alt="第二张">
         </div>
         <div class="item">
-            <img src="img/296494-106.jpg" alt="第三张">
+            <img style="height:460px;width:100%;" src="img/beihuabei.jpg" alt="第三张">
         </div>
 
     </div>
