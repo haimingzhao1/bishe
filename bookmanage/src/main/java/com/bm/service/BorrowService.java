@@ -52,6 +52,14 @@ public class BorrowService {
         TBorrow borrow = borrowMapper.selectByPrimaryKey(id);
         borrow.setAlsoDate(DataUtil.timeStamp());
         int res = borrowMapper.updateByPrimaryKeySelective(borrow);
+        BStock bStock = stockMapper.selectByBookId(borrow.getBookId());
+        if (bStock != null) {
+            bStock.setStock(bStock.getStock()+1);
+            stockMapper.updateByPrimaryKeySelective(bStock);
+
+        }else {
+            return 0;
+        }
         return res;
     }
 
